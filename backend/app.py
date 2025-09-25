@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify
 import joblib
 import numpy as np
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+CORS(app)
 
 # Load trained model and scaler
 model = joblib.load("model/diabetes_rf_model.pkl")
@@ -35,4 +38,4 @@ def predict():
         return jsonify({"error": str(e)})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=9896)
