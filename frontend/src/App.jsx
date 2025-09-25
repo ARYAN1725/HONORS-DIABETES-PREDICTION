@@ -25,7 +25,6 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // convert values to numbers
     const features = Object.values(formData).map(Number);
 
     try {
@@ -43,81 +42,85 @@ function App() {
   };
 
   return (
-    <div className="mainform">
-      <h1>Diabetes Prediction</h1>
-      <form onSubmit={handleSubmit}>
-       <input
-          type="number"
-          name="preg"
-          placeholder="Pregnancies (count)"
-          value={formData.preg}
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          name="glucose"
-          placeholder="Glucose (mg/dL)"
-          value={formData.glucose}
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          name="bp"
-          placeholder="Blood Pressure (mm Hg)"
-          value={formData.bp}
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          name="skin"
-          placeholder="Skin Thickness (mm)"
-          value={formData.skin}
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          name="insulin"
-          placeholder="Insulin (µU/mL)"
-          value={formData.insulin}
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          step="0.1"
-          name="bmi"
-          placeholder="BMI (kg/m²)"
-          value={formData.bmi}
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          step="0.01"
-          name="dpf"
-          placeholder="Diabetes Pedigree Function (index)"
-          value={formData.dpf}
-          onChange={handleChange}
-        />
-        <input
-          type="number"
-          name="age"
-          placeholder="Age (years)"
-          value={formData.age}
-          onChange={handleChange}
-        />
+    <div className="app-container">
+      <div className="card">
+        <h1 className="title">Diabetes Prediction</h1>
+        <form className="form" onSubmit={handleSubmit}>
+          <input
+            type="number"
+            name="preg"
+            placeholder="Pregnancies (count)"
+            value={formData.preg}
+            onChange={handleChange}
+          />
+          <input
+            type="number"
+            name="glucose"
+            placeholder="Glucose (mg/dL)"
+            value={formData.glucose}
+            onChange={handleChange}
+          />
+          <input
+            type="number"
+            name="bp"
+            placeholder="Blood Pressure (mm Hg)"
+            value={formData.bp}
+            onChange={handleChange}
+          />
+          <input
+            type="number"
+            name="skin"
+            placeholder="Skin Thickness (mm)"
+            value={formData.skin}
+            onChange={handleChange}
+          />
+          <input
+            type="number"
+            name="insulin"
+            placeholder="Insulin (µU/mL)"
+            value={formData.insulin}
+            onChange={handleChange}
+          />
+          <input
+            type="number"
+            step="0.1"
+            name="bmi"
+            placeholder="BMI (kg/m²)"
+            value={formData.bmi}
+            onChange={handleChange}
+          />
+          <input
+            type="number"
+            step="0.01"
+            name="dpf"
+            placeholder="Diabetes Pedigree Function (index)"
+            value={formData.dpf}
+            onChange={handleChange}
+          />
+          <input
+            type="number"
+            name="age"
+            placeholder="Age (years)"
+            value={formData.age}
+            onChange={handleChange}
+          />
 
-        <button type="submit">Predict</button>
-      </form>
+          <button type="submit" className="btn">Predict</button>
+        </form>
 
-      {result && (
-        <div>
-          <h2>Result</h2>
-          <p>
-            Prediction:{" "}
-            {result.prediction === 1 ? "Diabetes" : "No Diabetes"}
-          </p>
-          <p>Probability: {result.probability.toFixed(2)}</p>
-        </div>
-      )}
+        {result && (
+          <div className="result">
+            <h2>Result</h2>
+            <p>
+              Prediction:{" "}
+              <span className={result.prediction === 1 ? "positive" : "negative"}>
+                {result.prediction === 1 ? "Diabetes" : "No Diabetes"}
+              </span>
+            </p>
+            <p>Probability: {result.probability.toFixed(2)}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
