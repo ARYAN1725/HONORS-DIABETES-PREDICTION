@@ -43,6 +43,8 @@ function App() {
 
   return (
     <div className="app-container">
+              <img src="images.jpeg" alt="" />
+
       <div className="card">
         <h1 className="title">Diabetes Prediction</h1>
         <form className="form" onSubmit={handleSubmit}>
